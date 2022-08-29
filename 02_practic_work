@@ -68,3 +68,22 @@ namespace PracticWork02_Task13
     }
 }
 
+Задача 13. Другое решение
+// Подсмотрел короткое решение. Конвертация числа в текст и вывод символа с определенным номером
+ class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите число: ");
+            int anyNumber = Convert.ToInt32(Console.ReadLine()); // Ввод числа с консоли Обязательно положительное, иначе "-" собъёт подсчёт
+            string anyNumberText = Convert.ToString(anyNumber); // Конвертация переменной int в текст string anyNumberText
+            if (anyNumberText.Length > 2) // Если количество символов в переменной anyNumberText больше двух
+            {
+            Console.WriteLine("третья цифра -> " + anyNumberText[2]); // true -> выводим текст  и третий символ ([2] как в массиве) переменной anyNumberText
+            }
+            else
+	        {
+            Console.WriteLine("-> третьей цифры нет"); // false ->  если anyNumberText ("число") меньше трех символов, то выводим другой текст
+            }
+        }
+    }
