@@ -1,0 +1,31 @@
+/*Задача 10: Напишите программу, которая принимает на вход трёхзначное число и на выходе показывает вторую цифру этого числа.
+
+456 -> 5
+782 -> 8
+918 -> 1 
+*/
+
+namespace PracticWork02
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Введите цифру (и нажмите enter):");
+            int[] Array = new int[3]; //Объявляем массив из 3 чисел
+            for (int i = 0; i < 3; i++) // счётчик от 0 до 2 
+            {
+                Array[i] = Convert.ToInt32(Console.ReadLine()); //Заполняем массив с консоли 
+            }
+            Console.Write("Создан массив: "); 
+            for (int i = 0; i < 3; i++) // выводим по порядку в строку все элементы массива для наглядности
+            {
+                Console.Write(Array[i]); 
+            }
+            Console.WriteLine("");
+            Console.WriteLine("Вторая цифра - " + Array[1]); // выводим 2й элемент массива 
+            Console.Write("Нажмите *enter* для выхода");
+            Console.ReadLine();
+        }
+    }
+}
