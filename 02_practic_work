@@ -87,3 +87,35 @@ namespace PracticWork02_Task13
             }
         }
     }
+
+
+    /*Задача 15: Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+    6 -> да
+    7 -> да
+    1 -> нет*/
+    
+    
+namespace PracticWork02_Task15
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите число от 1 до 7 (день недели)"); // как-то надо ограничить список вариантов чисел
+            int dayOfTheWeek = Convert.ToInt32(Console.ReadLine()); // вводим число
+            if ( dayOfTheWeek == 6 || dayOfTheWeek == 7 ) //проверка числа на выходной || - логичеcкое или
+            {
+                Console.WriteLine( dayOfTheWeek+ "-> да (выходной)"); // true т.е. число 6 или 7
+            } 
+            else 
+            if ( dayOfTheWeek > 0 & dayOfTheWeek < 6 ) // условие попадает ли в промежуток от 1 до 5 & - - логичеcкое и
+            {    
+                Console.WriteLine(dayOfTheWeek + "-> нет (будни)"); // true т.е. число от 1 до 5, это будни "нет"
+            }
+            else
+            {
+                Console.WriteLine("Введено неверное число"); // false число меньше 1 и больше 7
+            }
+        }      
+    }
+}
