@@ -2,61 +2,117 @@
 // 14212 -> нет
 // 23432 -> да
 // 12821 -> да
-
-Console.WriteLine("Проверяем, является ли число палиндромом"); // т.е. таким, что первый символ равен последнему, второй - предпоследнему и т.д. 
-Console.Write("Введите пятизначное число: ");
-string number = Console.ReadLine(); // считываем число с консоли символы (причем это могут быть и не только числа:) и создаем текстовую переменную number
-
-void CheckNumber(string number) // метод проверки текстовой переменной number
+namespace PracticWork03_Task19
 {
-  if (number[0]==number[4] & number[1]==number[3]) // условие равенства символа с индексами 0 и 4 И равенства символов с индексами 1 и 3
-  {
-    Console.WriteLine($"{number} - да"); // true пишем "да"
-  }
-  else 
-    Console.WriteLine($"{number} - нет"); //false пишем "нет"
-}
+    class Program
+    {
+        static void Main(string[] args)
+        {
+Console.WriteLine("Проверяем, является ли число палиндромом");
+            Console.Write("Введите пятизначное число: ");
+            string number = Console.ReadLine();
 
-if (number.Length == 5) // программа начинается с проверки на пятизначность переменной number
-{
-    CheckNumber(number); // true запускаем метод CheckNumber
+            void CheckNumber(string number)
+            {
+                if (number[0] == number[4] & number[1] == number[3])
+                {
+                    Console.WriteLine($"{number} - да");
+                }
+                else
+                    Console.WriteLine($"{number} - нет");
+            }
+
+            if (number.Length == 5)
+            {
+                CheckNumber(number);
+            }
+            else
+                Console.WriteLine($"Введено неверное число! Нужно пятизначное.");
+        }
+    }
 }
-else //false пишем, чтобы введенный текст/число было из пяти символов
-    Console.WriteLine($"Введено неверное число! Нужно пятизначное.");
     
 //Надо бы сделать еще проверку на то, является введенные символы числом, а потом уже метод запускать, но пока не знаю как...
 
 
 
+namespace PracticWork03_Task21
+{
 // Задача 21: Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
 // A (3,6,8); B (2,1,-7), -> 15.84
 // A (7,-5, 0); B (1,-1,9) -> 11.53
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int CoordinatesEntering(string axisName, string pointName) // метод ввода координат точки и её имени
+            {
+                Console.Write($"Введите координату по оси {axisName} точки {pointName} и нажмите enter: "); // запрос положения по оси координат и имени точки
+                return Convert.ToInt32(Console.ReadLine());
+            }
 
+            double Formula(double x1, double x2,  // метод формулы расчета расстояния между точками в осях XYZ.
+                            double y1, double y2, //  Аргументы: три координаты точки 1 и три координаты точки 2 
+                            double z1, double z2)
+            {
+                return Math.Sqrt(Math.Pow((x2 - x1), 2) + // квадратный корень из суммы квадратов разницы координат (x2-x1), (y2-y1), (z2-z1)
+                    Math.Pow((y2 - y1), 2) +
+                    Math.Pow((z2 - z1), 2));
+            }
 
+            int x1 = CoordinatesEntering("x", "A"); // результат метода CoordinatesEntering записываем в переменную x1 и т.д.
+            int y1 = CoordinatesEntering("y", "A");
+            int z1 = CoordinatesEntering("z", "A");
+            int x2 = CoordinatesEntering("x", "B");
+            int y2 = CoordinatesEntering("y", "B");
+            int z2 = CoordinatesEntering("z", "B");
 
-int CoordinatesEntering(string axisName, string pointName) // метод ввода координат точки и её имени
-{
-    Console.Write($"Введите координату по оси {axisName} точки {pointName} и нажмите enter: "); // запрос положение по оси координат и имени точки
-    return Convert.ToInt32(Console.ReadLine()); 
+            double distanceBetweenPoints = Math.Round(Formula(x1, x2, y1, y2, z1, z2), 2);
+            //результат метода Formula записываем в переменную distanceBetweenPoints с округлением до двух знаков после запятой 
+            Console.WriteLine();
+            Console.WriteLine($"Расстояние между точками А и В = {distanceBetweenPoints}");
+        }
+    }
 }
 
-double Formula(double x1, double x2,  // метод формулы расчета расстояния. Аргументы: три координаты точки 1 и три координаты точки 2 
-                double y1, double y2, 
-                double z1, double z2)
+
+namespace PracticWork03_Task23
 {
-    return Math.Sqrt(Math.Pow((x2-x1), 2) + // квадратный корень из суммы квадратов разницы координат (x2-x1), (y2-y1), (z2-z1)
-        Math.Pow((y2-y1), 2) + 
-        Math.Pow((z2-z1), 2));
+    //Задача 23: Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
+    // 3 -> 1, 8, 27
+    // 5 -> 1, 8, 27, 64, 125
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите целое положительное число N: ");
+            int tabl = Convert.ToInt32(Console.ReadLine()); // задаем число - количество значений в таблице кубов
+            void TablCube(int[] tabl) // метод создания массива кубов из N элементов
+            {
+                int counter = 0; // переменная индекс элемента
+                int length = tabl.Length; // переменная - размер массива
+                while (counter < length)
+                {
+                    tabl[counter] = Convert.ToInt32(Math.Pow(counter, 3)); // true записываем значения в массив tabl куб числа counter
+                    counter++; // прибавляем счетчик индекса
+                }
+            }
+
+            void PrintTabl(int[] arr) // метод печати массива, аргумент - массив 
+            {
+                int count = arr.Length;  // задаем ограничение цикла = размер массива
+                int index = 1;
+                Console.WriteLine("Значения кубов чисел от 1 до " + tabl);
+                while (index < count)
+                {
+                    Console.Write(arr[index] + ", "); // печатаем в строку значения массива начиная с первого индекса. Как "убрать" запятую у посл.элемента пока не знаю.
+                    index++;
+                }
+            }
+           
+            int[] array = new int[tabl + 1]; // задаем массив размером N+1
+            TablCube(array);
+            PrintTabl(array);
+        }
+    }
 }
-
-int x1 = CoordinatesEntering("x", "A"); // результат метода CoordinatesEntering записываем в переменную x1 
-int y1 = CoordinatesEntering("y", "A");
-int z1 = CoordinatesEntering("z", "A");
-int x2 = CoordinatesEntering("x", "B");
-int y2 = CoordinatesEntering("y", "B");
-int z2 = CoordinatesEntering("z", "B");
-
-double distanceBetweenPoints =  Math.Round (Formula(x1, x2, y1, y2, z1, z2), 2 ); // результат метода Formula записываем в переменную distanceBetweenPoints
-// с округлением до двух знаков после запятой 
-Console.WriteLine();                                                                
-Console.WriteLine($"Расстояние между точками А и В = {distanceBetweenPoints}"); 
